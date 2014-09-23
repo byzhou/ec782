@@ -1,0 +1,243 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+
+\documentclass{beamer}
+
+%
+% DO NOT USE THIS FILE AS A TEMPLATE FOR YOUR OWN TALKS¡!!
+%
+% Use a file in the directory solutions instead.
+% They are much better suited.
+%
+
+
+% Setup appearance:
+
+\usetheme{Darmstadt}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+
+
+% Standard packages
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+
+
+% Setup TikZ
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+
+
+% Author, Title, etc.
+
+\title[ Substrate-Integrated Millimeter-Wave] 
+{%
+Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
+  %
+}
+
+\author[Boyou Zhou]
+{
+  Boyou Zhou\inst{*}
+}
+
+\institute[Tübingen and others]
+{
+  \inst{*}%
+  Boston University, Boston, MA
+}
+
+\date[fall 2014]
+{EC782, \today}
+
+
+
+% The main document
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\AtBeginSubsection{
+    \frame<beamer>{ 
+    \frametitle{Outline}   
+    \tableofcontents[currentsection,currentsubsection]
+    }
+}
+
+
+\section{Introduction}
+\subsection{Introduction to Ultra High Frequency}
+
+\begin{frame}{Electromagnetic Frequency}
+
+    \begin{figure}[p]
+        \includegraphics[width=4in]{../doc_image/presentation/radio_freq.png}
+        \caption{Spectrum of electromagnetic waves}
+        \label{Spectrum of electromagnetic waves}
+    \end{figure}
+
+    \begin{itemize}
+        \item  As the technology develops, the frequency goes higher and higher.
+        \item  Correspond to higher frequency, the wavelength gets shorter.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Why higher frequency?}
+
+    \begin{itemize}
+        \item Bridging the gap of well-perceived technology between electronics and photonics
+        \item Holds a number of unknown secrets, features, and promises
+        \item Propagation loss through atmosphere over millimeter-wave and terahertz frequency 
+                bands goes through wild upsidedown ripple phenomena
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Limits in Building Ultra-high-frequency devices}
+\begin{frame}{Is that Hard to build Ultra-high-frequency devices?}
+
+    \begin{itemize}
+        \item Signals are easily radiated, crosstalked
+        \item Higher Q losses
+        \item Fabrication Issues
+    \end{itemize}
+
+\end{frame}
+
+\section{Substrate-Integrated Circuits}
+
+\subsection{Wire Connection}
+
+\begin{frame}{Electromagnetic Frequency}
+
+    \begin{figure}[p]
+        \includegraphics[width=2in]{../doc_image/presentation/wire_connection_on_board.png}\\
+        \includegraphics[width=2in]{../doc_image/presentation/microstrip_line.png}
+        \caption{Wire Connection on Board}
+        \label{Wire Connection on Board}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Limits in Ultra-high-frequency devices}
+\pause
+    \begin{itemize}
+        \item Exhibit high field/current singularities over open strip
+        edges and also high transmission loss because of dielectric,
+        conductor (surface roughness), and radiation losses, thus
+        low Q-factor;
+\pause
+        \item Design and implementation of such planar
+        structures are usually subject to complicated packaging
+        issue, crosstalk, direct current (dc) grounding, and mode
+        conversion;
+\pause
+        \item Power handling (more pronounced over
+        microwave and millimeter-wave frequency ranges) and
+        thermal management become tedious and difficult;
+\pause
+        \item fabrication
+        tolerance and impedance control are difficult to meet over
+        millimeter-wave and terahertz frequency range .
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Substrate-Integrated Waveguid}
+\begin{frame}{Substrate-Integrated Waveguid}
+    
+    \begin{figure}[p]
+        \includegraphics[width=1in]{../doc_image/presentation/SIW.png}~
+        \includegraphics[width=1in]{../doc_image/presentation/siw2.png}~
+        \includegraphics[width=1in]{../doc_image/presentation/siw3.png}
+        \caption{Substrate Integrated Waveguide}
+        \label{Substrate Integrated Waveguide}
+    \end{figure}
+
+    \begin{itemize}
+        \item Basic planar structure as microstrip
+        \item Vias on both sides with metallized inner surface
+        \item Microstrip connections as matched to $50\Omega$ impedance
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Substrate-Integrated Image Guide}
+    
+    \begin{figure}[p]
+        \includegraphics[width=2.5in]{../doc_image/presentation/SICs.PNG}
+        \caption{Substrate Integrated Image Guide}
+        \label{Substrate Integrated Image Guide}
+    \end{figure}
+
+    \begin{itemize}
+        \item A conventional slab-image guide on
+        the metallic plate from a planar substrate of certain
+        thickness;
+        \item This air hole perforation of
+        dielectric slab at both sides of the guiding channel
+        effectively lowers the permittivity or dielectric constant
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Substrate-Integrated Image Guide}
+    
+    \begin{figure}[p]
+        \includegraphics[width=2.5in]{../doc_image/presentation/SICs.PNG}
+        \caption{others}
+        \label{Substrate Integrated Image Guide}
+    \end{figure}
+
+    \begin{itemize}
+        \item A combination of several techniques
+        \item Based on the needs for dielectric constant and less loss
+    \end{itemize}
+
+\end{frame}
+
+
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+    
+    \begin{figure}[p]
+        \includegraphics[width=1in]{../doc_image/presentation/summary.png}~
+        \caption{Examples of SICs}
+        \label{Examples of SICs}
+    \end{figure}
+
+    \begin{itemize}
+        \item Much less loss in the Ultra-high-frequency
+        \item Vias on both sides with metallized inner surface
+        \item Microstrip connections as matched to $50\Omega$ impedance
+    \end{itemize}
+
+\end{frame}
+\end{document}
+
+
