@@ -22,10 +22,28 @@
 % Setup appearance:
 
 \usetheme{Darmstadt}
+%\usetheme{CambridgeUS}
+%\usetheme{Berkeley}
+%\usetheme{Hannover}
 \usefonttheme[onlylarge]{structurebold}
 \setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
 \setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+    
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+        \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
 
+    \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+        \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+    \end{beamercolorbox}}%
+    \vskip0pt% 
+    
+    
+}
 
 % Standard packages
 
@@ -34,6 +52,9 @@
 \usepackage{times}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{enumerate}
+
 
 
 % Setup TikZ
@@ -45,7 +66,7 @@
 
 % Author, Title, etc.
 
-\title[ Substrate-Integrated Millimeter-Wave] 
+\title[ Substrate-Integrated Circuits ] 
 {%
 Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
   %
@@ -53,13 +74,24 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
 
 \author[Boyou Zhou]
 {
-  Boyou Zhou\inst{*}
+  Ke Wu, Fellow IEEE\inst{1}\\
+  Yu Jian Cheng, Member IEEE\inst{2}\\
+  Wei Hong, Fellow IEEE\inst{4}\\
+  \textit{Reviewed by Boyou Zhou\inst{*}}
 }
 
 \institute[Tübingen and others]
 {
-  \inst{*}%
-  Boston University, Boston, MA
+  \inst{1}
+  University of Montreal, Montreal, QC, Canada\\
+  \inst{2}
+  Univerisity of Electronic Science and Technology, Chengdu, China\\
+  \inst{3}
+  INRS-EMT Montreal, QC, Canada\\
+  \inst{4}
+  Southeast University, Nanjing, China\\
+  \inst{*}
+  Boston Univeristy, MA
 }
 
 \date[fall 2014]
@@ -88,7 +120,7 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
 
 
 \section{Introduction}
-\subsection{Introduction to Ultra High Frequency}
+\subsection{Introduction to Terahertz-High-Frequency}
 
 \begin{frame}{Electromagnetic Frequency}
 
@@ -105,45 +137,60 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
 
 \end{frame}
 
-\begin{frame}{Why higher frequency?}
-
-    \begin{itemize}
-        \item Bridging the gap of well-perceived technology between electronics and photonics
-        \item Holds a number of unknown secrets, features, and promises
-        \item Propagation loss through atmosphere over millimeter-wave and terahertz frequency 
-                bands goes through wild upsidedown ripple phenomena
-    \end{itemize}
-
+\begin{frame}{Why Terahertz Frequency?}
+\pause
+    \begin{block}{Photonics Perspective}
+        Bridging the gap of well-perceived technology between electronics and photonics
+    \end{block}
+\pause
+    \begin{block}{A Lot to Explore}
+        Holds a number of unknown secrets, features, and promises
+    \end{block}
+\pause
+    \begin{block}{Propagation Lost in Atmosphere}
+        Propagation loss through atmosphere over millimeter-wave and terahertz frequency 
+            bands goes through wild upsidedown ripple phenomena
+    \end{block}
 \end{frame}
 
-\subsection{Limits in Building Ultra-high-frequency devices}
-\begin{frame}{Is that Hard to build Ultra-high-frequency devices?}
+\subsection{Applications in Terahertz-High-Frequency}
+
+\begin{frame}{What is the applications of Terahertz-High-Frequency?}
+
+    \begin{figure}[p]
+        \includegraphics[width=1in]{../doc_image/presentation/medical_imaging.jpg} ~
+        \includegraphics[width=1in]{../doc_image/presentation/security.jpg}~
+        \includegraphics[width=1in]{../doc_image/presentation/communication.jpg}
+        \caption{Various Possible Applications for THF}
+        \label{Apps for THF}
+    \end{figure}
 
     \begin{itemize}
-        \item Signals are easily radiated, crosstalked
-        \item Higher Q losses
-        \item Fabrication Issues
+\pause
+        \item \textbf{Medical Imaging} Non-ionizing radiation provides high-resolution and
+            harmless observation tools.
+\pause
+        \item \textbf{Security} High enough to penetrate fabrics and plastics, mainly 
+            targeting sensing concealed weapon.
+\pause
+        \item \textbf{Communication} OF COURSE, that is what we are talking about. 
     \end{itemize}
 
 \end{frame}
 
 \section{Substrate-Integrated Circuits}
 
-\subsection{Wire Connection}
+\subsection{Wire Connections On Board}
 
 \begin{frame}{Electromagnetic Frequency}
 
     \begin{figure}[p]
-        \includegraphics[width=2in]{../doc_image/presentation/wire_connection_on_board.png}\\
-        \includegraphics[width=2in]{../doc_image/presentation/microstrip_line.png}
-        \caption{Wire Connection on Board}
-        \label{Wire Connection on Board}
+        \includegraphics[width=1in]{../doc_image/presentation/wire_connection_on_board.png} ~
+        \includegraphics[width=1in]{../doc_image/presentation/microstrip_line.png}
+        \caption{Wire Connections on Board}
+        \label{Wire Connections on Board}
     \end{figure}
 
-\end{frame}
-
-\begin{frame}{Limits in Ultra-high-frequency devices}
-\pause
     \begin{itemize}
         \item Exhibit high field/current singularities over open strip
         edges and also high transmission loss because of dielectric,
@@ -154,12 +201,18 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
         structures are usually subject to complicated packaging
         issue, crosstalk, direct current (dc) grounding, and mode
         conversion;
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Limits in Terahertz-high-frequency devices}
+
 \pause
+    \begin{itemize}
         \item Power handling (more pronounced over
         microwave and millimeter-wave frequency ranges) and
         thermal management become tedious and difficult;
 \pause
-        \item fabrication
+        \item Fabrication
         tolerance and impedance control are difficult to meet over
         millimeter-wave and terahertz frequency range .
     \end{itemize}
@@ -188,15 +241,17 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
 \begin{frame}{Substrate-Integrated Image Guide}
     
     \begin{figure}[p]
-        \includegraphics[width=2.5in]{../doc_image/presentation/SICs.PNG}
+        \includegraphics[width=1.5in]{../doc_image/presentation/SIIG.PNG}
         \caption{Substrate Integrated Image Guide}
         \label{Substrate Integrated Image Guide}
     \end{figure}
 
     \begin{itemize}
+\pause
         \item A conventional slab-image guide on
         the metallic plate from a planar substrate of certain
         thickness;
+\pause
         \item This air hole perforation of
         dielectric slab at both sides of the guiding channel
         effectively lowers the permittivity or dielectric constant
@@ -204,7 +259,7 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
 
 \end{frame}
 
-\begin{frame}{Substrate-Integrated Image Guide}
+\begin{frame}{Some other ways of designing the guides}
     
     \begin{figure}[p]
         \includegraphics[width=2.5in]{../doc_image/presentation/SICs.PNG}
@@ -213,31 +268,178 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
-        \item A combination of several techniques
-        \item Based on the needs for dielectric constant and less loss
+        \item A combination of SIW and SIIDG(Substrate Integrated Image
+        Dieletric Guide)
+        \item Cost-effective design and Easy for Manufactoring 
     \end{itemize}
 
 \end{frame}
 
-
-
-\section*{Summary}
-
-\begin{frame}{Summary}
+\subsection{SIC's Antenna}
+\begin{frame}{Slot Array Antenna}
     
     \begin{figure}[p]
-        \includegraphics[width=1in]{../doc_image/presentation/summary.png}~
-        \caption{Examples of SICs}
-        \label{Examples of SICs}
+        \includegraphics[width=1.5in]{../doc_image/presentation/slot_array_antenna.png}~
+        \includegraphics[width=1.5in]{../doc_image/presentation/slot_array_antenna2.PNG}
+        \caption{Slot Array Antenna}
+        \label{Slot Array Antenna}
     \end{figure}
 
     \begin{itemize}
-        \item Much less loss in the Ultra-high-frequency
-        \item Vias on both sides with metallized inner surface
-        \item Microstrip connections as matched to $50\Omega$ impedance
+        \item End feed type post wall waveguide fed parallel plate slot array
+        \item Considering the polarization and bandwith of the antenna, the slot arrays 
+        are built on SIWs with different resonant freqeuncy.
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}{Horn Antenna}
+
+    \begin{figure}[p]
+        \includegraphics[width=2.0in]{../doc_image/presentation/horn.PNG}
+        \caption{Horn Antenna}
+        \label{Horn Antenna}
+    \end{figure}
+
+    \begin{itemize}
+        \item One half SIW guide for the horn antenna design.
+        \item Difficult to have the impedance match when the frequency is low.
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Beamforming Design}
+\begin{frame}{Beamforming}
+ 
+     \begin{figure}[p]
+        \includegraphics[width=2.0in]{../doc_image/presentation/bfn.PNG}
+        \caption{Beamforming Network}
+        \label{Beamforming Network}
+    \end{figure}
+
+    \begin{itemize}
+        \item Multibeam antenna and multiple antennas are two
+        efficient methods for combating the multipath fading
+        and increasing the channel capacity in radio-frequency
+        (RF) transceivers and microwave systems.
+        \item They used to be heavy, expensive and hard to fabricate. But
+        with SIW based BFN, it is much easier to build.
+    \end{itemize}
+   
+\end{frame}
+
+
+\section{CAD Design Basic Tool Flow}
+\subsection{CAD instead of Solving Equations}
+\begin{frame}{Why CAD Design}
+ 
+    \begin{figure}[p]
+        \includegraphics[width=1.5in]{../doc_image/presentation/maxwell.png} ~
+        \includegraphics[width=1.5in]{../doc_image/presentation/HFSS_cad.jpg}
+        \caption{HFSS Demo}
+        \label{HFSS Demo}
+    \end{figure}
+
+\end{frame}
+    
+
+\begin{frame}{Work Flow of SIW}
+    \begin{columns}
+        \column{0.5\textwidth}
+\pause
+            \begin{block}{Step One}
+               Determine functionality of each block and specs.
+            \end{block}
+\pause
+            \begin{block}{Step Two}
+               Use the specs to design a conventional waveguide.
+            \end{block}
+\pause
+            \begin{block}{Step Three}
+               Apply the formula to the waveguide to determine the width and 
+               height of the SIW and the impedance matching connection.
+            \end{block}
+        \column{0.5\textwidth}
+\pause
+            \begin{block}{Step Four}
+               Draw the schematics in the HFSS.
+            \end{block}
+\pause
+            \begin{block}{Step Five}
+               Simulate the entire block to optimize the width and the connection.
+            \end{block}
+\pause
+            \begin{block}{Step Six}
+               Put the block to the entire design.
+            \end{block}
+    \end{columns}
+ 
+\end{frame}
+ 
+\section*{Summary}
+
+\begin{frame}{Performance}
+    
+    \begin{figure}[p]
+        \includegraphics[width=2.5in]{../doc_image/presentation/specs.PNG}
+        \caption{Specs comparison}
+        \label{Specs comparison}
+    \end{figure}
+
+    \begin{itemize}
+        \item I did not find the comparison between the microstrip and SIW. 
+        \item But I believe it's much better than microstrip when it goes to high 
+            frequency.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{References}
+\fontsize{6}{7.2}\selectfont
+        \begin{enumerate}[1]
+            \item \textit{
+            Ke Wu 
+            Poly-Grames Res. Center, Ecole Polytech., Montreal, QC, Canada 
+            Yu Jian Cheng ; Djerafi, T. ; Wei Hong
+            \emph{Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology}
+            Proceedings of the IEEE  (Volume:100 ,  Issue: 7 )}
+            \item D. Stephens, P. Young, and I. Robertson,
+            \emph{BMillimeter-wave substrate integrated
+            waveguides and filters in photoimageable
+            thick-film technology, IEEE Trans. Microw.
+            Theory Tech., vol. 53, no. 12, pp. 3832¿3838,
+            Dec. 2005. }
+            \item Y. J. Cheng, K. Wu, and W. Hong, 
+            \emph{BPower
+            handling capability of substrate integrated
+            waveguide interconnects and related
+            transmission line systems, IEEE Trans.
+            Adv. Packag., vol. 31, no. 4, pp. 900¿909,
+            Nov. 2008.}
+            \item A. Patrovsky and K. Wu, 
+            \emph{BSubstrate integrated
+            image guide (SIIG)VA planar dielectric
+            waveguide technology for millimeter-wave
+            applications, IEEE Trans. Microw. Theory
+            Tech., vol. 54, no. 6, pt. 2, pp. 2872¿2879,
+            Jun. 2006.}
+            \item Blumlein, Alan (1938-03-07), 
+            \emph{"Improvements in or relating to high 
+            frequency electrical conductors or radiators",
+            British patent no. 515684}
+            \item Ke Wu 
+            Dept. of Electr. Eng., Ecole Polytech. de Montreal, Que., Canada 
+            Deslandes, D. ; Cassivi, Y.
+            \emph{
+            The substrate integrated circuits - a new concept for 
+            high-frequency electronics and optoelectronics
+            Telecommunications in Modern Satellite, Cable and Broadcasting Service, 2003. 
+            TELSIKS 2003. 6th International Conference on  (Volume:1 )
+            1-3 Oct. 2003}
+
+        \end{enumerate}
+\end{frame}
+
 \end{document}
 
 
