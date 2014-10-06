@@ -1,39 +1,133 @@
 \documentclass[]{article}
 \usepackage{graphicx}
+\usepackage{multicol}
 
 \parindent=0pt
 \usepackage[margin=0.5in]{geometry}
 
 \begin{document}
 \pagestyle{empty}
-{\large\textbf{Research Notes}}
+{\large\textbf{EC782 Lab2 Noise Figure Measurement Report}}
 
-\begin{columns}
-
-    \column{0.5\textwidth}
+\begin{multicols}{2}
 
     \begin{itemize}
-        \item[*] Created on Sept 6, 2014
+        \item[*] Originally Created on Sept 6, 2014
         \item[*] Modified on \today
-        \item[*] Author info: \textit {Boyou Zhou}\\
+        \item[*] Author info: \textit{Yalun Zhang}\\ 
+                 Email:yalunz@bu.edu
+                    
+    \end{itemize}
+
+    \columnbreak
+
+    \begin{itemize}
+        \item[ ]
+        \item[ ]
+        \item[*] \textit {Boyou Zhou}\\
                  8 St Mary's St, PHO 340, Boston, MA 02215\\
                  Email: bobzhou@bu.edu, Phone: 617-678-8480
     \end{itemize}
 
-    \column{0.5\textwidth}
-        \item [ ] 
-        \item [ ] 
-        \item [*] Yalun Zhang
-
-    \end{columns}
+\end{multicols}
 
 \rule[-0.1cm]{7.5in}{0.01cm}\\
 \\
-\noindent \textbf{Sept 3,2014}
-\textit{title}
-\indent		\begin{itemize}
+\indent		             
+\section {Summary of Results}
 
-            \item \textit{main idea}
-        \end{itemize}
+\begin{center}
+    \begin{tabular}{c c}
+        Parameter & values \\ \\ \hline \\
+        Resolution Bandwidth & 10kHz \\
+        Centre Frequency & 2GHz \\
+        Temperature & 290K \\
+        Noise Figure & 19.54dB
+
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    Table 1: Main Parameters 
+\end{center}
+
+\section{Experiment Procesure}
+
+According to the Thomas Lee's book, \textit{the Good Old Method} , noise figure can
+be measured by the equation[\ref{noise figure}]. Because the noise that we are 
+measuring, $N_{measured}$ , is too low to be observed through the spectrum analyzer.
+It it necessary to push the noise higher than the noise floor so that it can be measured.
+In the experiment, our group cascade the amplifier with two other low noise amplifier.
+The input signal is fed into the \textit{DUT}, the amplifier to be measured, and then 
+connect the \textit{DUT} with the two cascaded amplifiers.
+
+\begin{equation}
+    Noise Figure = \frac{N_{measured}}{kBT_{0}G_{total}}
+    \label{noise figure}
+\end{equation}
+
+In order to know how much gain we have applied into the noise signal, we need to first 
+measure the total gain from the cascaded last two amplifiers. But before the measurements,
+the entire system needs to be configured. Thus, we need to first measure how much loss 
+or gain can be get from the function generator to the spectrum analyzer.
+
+\begin{center}
+    \begin{tabular}{c c}
+        Parameter & values \\ \\ \hline \\
+        Input Signal \textit{measured from function generator} & -20dBm \\
+        Output Signal \textit{measured from spectrum analyzer} & -16.6dBm
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    Table 2: Signal Amplifier Configuration
+\end{center}
+
+After configured by measuring the signal from function generator to the spectrum analyzer,
+the total gain including the last two stages of amplifier need to be measured. Since cascaded
+amplifiers' noise figure is mainly determined by the first stage's amplifier, equation
+[\ref{cascading amplifiers}] , we can estimate the noise figure of the entire system should
+be the same as the first stage's noise figure.
+
+\begin{equation}
+    Noise Figure = F_{1} + \frac{F_{2} - 1}{G_{1}} + \frac{F_{3} - 1}{G_{1}G_{2}}
+    \label{cascading amplifiers}
+\end{equation}
+
+The total system gain is measured, by measuring each single stage, and the data is 
+in the table[3] below. \\ \\ \\
+
+\begin{center}
+    \begin{tabular}{c c c c}
+        Parameter & input & output & gain\\ \\ \hline \\
+        5916 Gain  & -20dBm & -5.419dBm & 14.6dB\\
+        2522 Gain  & -20dBm & 0.001dBm & 20dB\\
+        2531 Gain  & -20dBm & 3.974dBm & 24dB
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    Table 3: Amplifier Gain
+\end{center}
+
+By applying the equation[\ref{noise figure}] , the noise figure of \textit{DUT} is $19.54dB$.
+
+\section{Pictures}
+
+\begin{figure}[p]
+    \begin{center}
+            \includegraphics[width=5in]{../doc_image/lab2/lab2_1.png}~
+            \caption{Noise Measurement}
+    \end{center}
+\end{figure}
+
+\begin{figure}[p]
+    \begin{center}
+            \includegraphics[width=5in]{../doc_image/lab2/lab2_2.png}
+            \caption{Configuration}
+    \end{center}
+\end{figure}
+
+
 \end{document}
 
