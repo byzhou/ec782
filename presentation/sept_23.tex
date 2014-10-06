@@ -28,6 +28,7 @@
 \usefonttheme[onlylarge]{structurebold}
 \setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
 \setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent=30}
 \setbeamertemplate{footline}{
     
     \leavevmode%
@@ -131,7 +132,9 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
+\pause
         \item  As the technology develops, the frequency goes higher and higher.
+\pause
         \item  Correspond to higher frequency, the wavelength gets shorter.
     \end{itemize}
 
@@ -166,14 +169,15 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
-\pause
+
+\uncover<1,2,3>{
         \item \textbf{Medical Imaging} Non-ionizing radiation provides high-resolution and
-            harmless observation tools.
-\pause
+            harmless observation tools.}
+\uncover<2,3>{
         \item \textbf{Security} High enough to penetrate fabrics and plastics, mainly 
-            targeting sensing concealed weapon.
-\pause
-        \item \textbf{Communication} OF COURSE, that is what we are talking about. 
+            targeting sensing concealed weapon.}
+\uncover<3>{
+        \item \textbf{Communication} OF COURSE, that is what we are talking about. }
     \end{itemize}
 
 \end{frame}
@@ -191,6 +195,7 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
         \label{Wire Connections on Board}
     \end{figure}
 
+\pause
     \begin{itemize}
         \item Exhibit high field/current singularities over open strip
         edges and also high transmission loss because of dielectric,
@@ -230,15 +235,20 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
         \label{Substrate Integrated Waveguide}
     \end{figure}
 
+\pause
     \begin{itemize}
+\pause
         \item Basic planar structure as microstrip
+\pause
         \item Vias on both sides with metallized inner surface
+\pause
         \item Microstrip connections as matched to $50\Omega$ impedance
     \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Substrate-Integrated Image Guide}
+\pause
     
     \begin{figure}[p]
         \includegraphics[width=1.5in]{../doc_image/presentation/SIIG.PNG}
@@ -268,8 +278,10 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
+\pause
         \item A combination of SIW and SIIDG(Substrate Integrated Image
         Dieletric Guide)
+\pause
         \item Cost-effective design and Easy for Manufactoring 
     \end{itemize}
 
@@ -286,7 +298,9 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
+\pause
         \item End feed type post wall waveguide fed parallel plate slot array
+\pause
         \item Considering the polarization and bandwith of the antenna, the slot arrays 
         are built on SIWs with different resonant freqeuncy.
     \end{itemize}
@@ -302,7 +316,9 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
+\pause
         \item One half SIW guide for the horn antenna design.
+\pause
         \item Difficult to have the impedance match when the frequency is low.
     \end{itemize}
 
@@ -318,10 +334,12 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
     \end{figure}
 
     \begin{itemize}
+\pause
         \item Multibeam antenna and multiple antennas are two
         efficient methods for combating the multipath fading
         and increasing the channel capacity in radio-frequency
         (RF) transceivers and microwave systems.
+\pause
         \item They used to be heavy, expensive and hard to fabricate. But
         with SIW based BFN, it is much easier to build.
     \end{itemize}
@@ -381,15 +399,16 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
 \begin{frame}{Performance}
     
     \begin{figure}[p]
-        \includegraphics[width=2.5in]{../doc_image/presentation/specs.PNG}
+        \includegraphics[width=2.5in]{../doc_image/presentation/specs.png}
         \caption{Specs comparison}
         \label{Specs comparison}
     \end{figure}
 
     \begin{itemize}
-        \item I did not find the comparison between the microstrip and SIW. 
-        \item But I believe it's much better than microstrip when it goes to high 
-            frequency.
+\pause
+        \item LTCC ( Low Temperature Co-fired Ceramic Process)
+\pause
+        \item Compared to the waveguide, it has a wider bandwidth and higher gain.
     \end{itemize}
 
 \end{frame}
@@ -438,6 +457,10 @@ Substrate-Integrated Millimeter-Wave and Terahertz Antenna Technology
             1-3 Oct. 2003}
 
         \end{enumerate}
+\end{frame}
+
+\begin{frame}{Thanks}
+        \textbf{Any Questions?}
 \end{frame}
 
 \end{document}
