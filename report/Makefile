@@ -2,9 +2,8 @@ compiler = pdflatex
 
 default:all
 all:
-	$(compiler) *.tex
+	$(compiler) pre_order.tex
 evince:
-	evince 
-
+	evince pre_order.pdf &
 clean:
 	rm -rf *.aux *.log
