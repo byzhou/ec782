@@ -12,7 +12,7 @@
 \begin{multicols}{2}
 
     \begin{itemize}
-        \item[*] Originally Created on Sept 6, 2014
+        \item[*] Originally Created on Nov 3, 2014
         \item[*] Modified on \today
         \item[*] Author info: \textit{Yalun Zhang}\\ 
                  Email:yalunz@bu.edu
@@ -38,12 +38,12 @@
 
 \begin{center}
     \begin{tabular}{c c}
-        Parameter & values \\ \\ \hline \\
-        Total PCB area & 10kHz \\
-        Estimated Gain & 2GHz \\
-        Estimated Noise Figure & 290K \\
-        Total Cost & 19.54dB \\
-        Total Power Consumption & 100mW
+        Parameter & Values \\ \\ \hline \\
+        Total PCB area & $10mm x 10mm$ \\
+        Estimated Gain & $152dB$ \\
+        Estimated Noise Figure & $0.9$ \\
+        Total Cost & $\$153 $ (Excluding SMA Connectors)   \\
+        Total Power Consumption & $100mW$
     \end{tabular}
 \end{center}
 
@@ -52,6 +52,138 @@
 \end{center}
 
 \section{Design Work Flow}
+The transceiver design in the RF area is largely determined by the gain, noise
+figurer, cost and other aspects. These needs to be considered in the entire
+design. Usually, the link budget estimation, which determines how much designers
+are going to pay for the entire design and how much gain the entire receiver is
+going to have.
+Thus, the entire receiver design flow follows the steps below:
+    \begin{itemize}
+        \item \textit{Estimation the specs of the entire design} \\
+            The receiver front end will pick up the signal almost $2-3$ meters
+            from the transmitter front end. Thus the signal is going to decade
+            almost $40-60$dB as the signal is transmitting through the air. The
+            following equation shows the estimation of receiver front-end signal
+            signal power, as in the Equ.~\ref{power_est}.
+            \begin{equation}
+                P_{R} = \phi_{R}A_{e}=\frac{P_{T}}{4\pi R^2}A_{e}
+                \label{power_est}
+            \end{equation}
+            $\phi_{R}$ is the free-space signal density, which follows a rule of
+            quadrature loss. $A_{e}$ is the efficiency of the antenna
+            (\textit{power reflection has not been taken into consideration.})
+            $P_{T}$ is the radiated power from the transmitter. $R$ is the
+            distance from the transmitter to the receiver. After the
+            calculation, the estimation of the signal strength that can be
+            picked up by the receiver is $-60dBm$.
+        \item \textit{Architecture Desicision} \\
+            The entire design is to down-converting the signal from $1GHz$ to
+            $IF$ frequency and then the FM signal being demoduled by the
+            demodulator. The possible choices of the demodulation architecture
+            are mainly decided by the demodulator. Since in the datasheet of
+            \textit{SA636}, the details of the application circuits are very
+            detailed. Thus the demodulator from our design is \textit{SA636}. It
+            is using both $I/Q$ signal in the design. Therefore, in the design,
+            a-$90$-degree phase shift is needed. But this has also been designed
+            by the application circuit. So the only part the designer needs to
+            worry about is to downconverting the signal from $1GHZ$ to the
+            frequency that $SA636$ can be demodulated. In this case, the
+            frequency is $100MHz$.
+            \begin{figure}[p]
+                \begin{center}
+                    \includegraphics[width=4in]{../../img/pre_order/architecture.png}~
+                    \label{architecture}
+                    \caption{Architecture of the Receiver}
+                \end{center}
+            \end{figure}
+        \item \textit{Main Components} \\
+            Once all the specs have been determined, the designer should choose
+            the main components from the websites like \textit{Digikey}, to see
+            whether they are available. The first part is to choose the main
+            components that my affect the entire design. These components
+            include LNA, mixer, demodulator.
+
+            \begin{center}
+                \begin{tabular}{c c c c c}
+                    Component Catogory & Name of the Components & Part Number &
+                    Manufacture & Price \\ \\ \hline \\
+                    Low Noise Amplifier & ADL5521 & blabla & Analog Devices Inc.
+                    & \$3 \\
+                    Mixer & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
+                    Manufacturer & ADL5521 & blabla & Analog Devices Inc. & \$3
+                    \\
+                    Demodulator & ADL5521 & blabla & Analog Devices Inc. & \$3
+                    \\
+                \end{tabular}
+            \end{center}
+
+            \begin{center}
+                \textbf{Table} Main Components List 
+            \end{center}
+
+        \item \textit{Other Components} \\
+            For other \textit{unimportant} components, the priority is to make
+            the layout more adjustable for the entire design. Thus the choice of
+            the other components should based on both specs and the footprint
+            designs. The brief list of the other components is below.
+
+            \begin{center}
+                \begin{tabular}{c c c c c}
+                    Component Catogory & Name of the Components & Part Number &
+                    Manufacture & Price \\ \\ \hline \\
+                    Components & ADL5521 & blabla & Analog Devices Inc.
+                    & \$3 \\
+                    Inductors & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
+                    Resistors & ADL5521 & blabla & Analog Devices Inc. & \$3
+                    \\
+                    SMA & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
+                    Audio Jack & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
+                \end{tabular}
+            \end{center}
+
+            \begin{center}
+                \textbf{Table} Other Components List 
+            \end{center}
+
+        \item \textit{Draw the Schematics and Layout} \\
+            The schematic is in fig.~\ref{schematic}. And the layout is in
+            fig.~\ref{layout}.
+            \begin{figure}[p]
+                \begin{center}
+                    \includegraphics[width=4in]{../../img/pre_order/schematic.PNG}~
+                    \label{schematic}
+                    \caption{Schematic of the Design}
+                \end{center}
+            \end{figure}
+
+            \begin{figure}[p]
+                \begin{center}
+                    \includegraphics[width=4in]{../../img/pre_order/layout.PNG}~
+                    \label{layout}
+                    \caption{Layout of the Design}
+                \end{center}
+            \end{figure}
+            
+        \item \textit{Verifying the Cost and Specs of the Entire Design} \\
+            The Cost and specs are listed at the beginning of the report.
+
+    \end{itemize}
+
+\section{Main Components Selections}
+\subsection{Low Noise Amplifier}
+\subsection{Filter}
+\subsection{Mixer}
+\subsection{Oscillators}
+\subsection{Demodulator}
+\section{Other Components}
+\subsection{LNA Lumped Elements Selections}
+\subsection{Other Capacitors, Inductors, and Resistors}
+\subsection{SMA}
+\subsection{Test Points}
+\subsection{Audio Jack}
+\section{System Parameter Calculation}
+\section{Components List}
+\section{Summary}
 
 \end{document}
 
