@@ -39,7 +39,7 @@
 \begin{center}
     \begin{tabular}{c c}
         Parameter & Values \\ \\ \hline \\
-        Total PCB area & $10mm x 10mm$ \\
+        Total PCB area & $10mm$ x $10mm$ \\
         Estimated Gain & $152dB$ \\
         Estimated Noise Figure & $0.9$ \\
         Total Cost & $\$153 $ (Excluding SMA Connectors)   \\
@@ -170,11 +170,99 @@ Thus, the entire receiver design flow follows the steps below:
     \end{itemize}
 
 \section{Main Components Selections}
-\subsection{Low Noise Amplifier}
-\subsection{Filter}
-\subsection{Mixer}
-\subsection{Oscillators}
-\subsection{Demodulator}
+    \subsection{Low Noise Amplifier}
+        Low Noise Amplifier is one of the most critical components in the entire
+        design. Since the FM receiver performance is mainly decided by the SNR,
+        which consists of signal strength and noise figure. The noise figure of
+        a cascading system is mainly decided by the first several stages. In
+        most of the communication system, the first several stages are consists
+        of LNA and filters. In this case, we did not apply an RF filter in the
+        front end, thus the filter noise figure has not been taken
+        consideration, according to Equ.~\ref{cascading}.
+        \begin{equation}
+            Noise Figure = F_{1} + \frac{F_{2} - 1}{G_{1}} + \frac{F_{3} -
+            1}{G_{1}G_{2}} + ...
+            \label{cascading}
+        \end{equation}
+        The choice for the LNA highly depends on the noise figure and the gain.
+        Since Analog Devices Inc.'s ADL5521 provides detailed information of
+        application of the low noise amplifier, we choose it for our design. The
+        application circuit gives detailed information of the bias circuit and
+        the input impedance matching. The data sheet provides the suggestions of
+        the each components value at different frequencies. The specs of ADL5521
+        is listed below.
+
+    \subsection{Filter}
+        Since the RF filter is not needed in this project, the only filter that
+        we need is the IF filter that can filter out the mirror signal higher
+        than the local oscillary frequency. We choose the oscillator at 890MHz,
+        which can also be tuned from 800MHz to 1GHz. The IF filter is at 100MHz
+        and it is a passband filter. We use the custome way of filter design and
+        use lumped elements to build the filter.
+
+        \begin{center}
+            \begin{tabular}{c c c}
+                Spec & Value \\ \\ \hline \\
+                gain & $21dB$ \\
+                Noise Figure & $0.9dB$ \\
+            \end{tabular}
+        \end{center}
+
+        \begin{center}
+            \textbf{Table} LNA Specs
+        \end{center}
+
+    \subsection{Mixer}
+        The only consideration for the mixer is the working frequency. We choose
+        the mixer with a working frequency from $400MHz$ to $2GHz$. The
+        conversion gain for the mixer is decent at $1GHz$ and the noise figure
+        is not so good. Since the cascading system, the system noise figure is
+        irrelavant with the last few stages. Because Equ.~\ref{cascading}thus it
+        does not matters if the noise figure of the mixer does not matter.
+
+        \begin{center}
+            \begin{tabular}{c c c}
+                Spec & Value \\ \\ \hline \\
+                gain & $10.1dB$ \\
+                Noise Figure & $12dB$ \\
+            \end{tabular}
+        \end{center}
+
+        \begin{center}
+            \textbf{Table} Mixer Specs
+        \end{center}
+
+    \subsection{Oscillators}
+        The frequency we choose for the IF is $110MHz$. Thus the oscillator we
+        choose can be tuned to that frequency.
+
+        \begin{center}
+            \begin{tabular}{c c c}
+                Spec & Value \\ \\ \hline \\
+                Frequency & $800MHz-1GHz$ \\
+                Phase Noise & $110dBi/Hz$ \\
+            \end{tabular}
+        \end{center}
+
+        \begin{center}
+            \textbf{Table} Oscillator Specs
+        \end{center}
+
+        The Oscillator for the demodulator has the specs as below.
+
+        \begin{center}
+            \begin{tabular}{c c c}
+                Spec & Value \\ \\ \hline \\
+                Frequency & $110Hz$ \\
+                Phase Noise & $110dBi/Hz$ \\
+            \end{tabular}
+        \end{center}
+
+        \begin{center}
+            \textbf{Table} Oscillator Specs
+        \end{center}
+
+    \subsection{Demodulator}
 \section{Other Components}
 \subsection{LNA Lumped Elements Selections}
 \subsection{Other Capacitors, Inductors, and Resistors}
