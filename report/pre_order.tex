@@ -78,17 +78,17 @@ Thus, the entire receiver design flow follows the steps below:
             picked up by the receiver is $-60dBm$.
         \item \textit{Architecture Desicision} \\
             The entire design is to down-converting the signal from $1GHz$ to
-            $IF$ frequency and then the FM signal being demoduled by the
+            $IF$ frequency and then the FM signal will be demoduled by the
             demodulator. The possible choices of the demodulation architecture
             are mainly decided by the demodulator. Since in the datasheet of
-            \textit{SA636}, the details of the application circuits are very
-            detailed. Thus the demodulator from our design is \textit{SA636}. It
-            is using both $I/Q$ signal in the design. Therefore, in the design,
-            a-$90$-degree phase shift is needed. But this has also been designed
-            by the application circuit. So the only part the designer needs to
-            worry about is to downconverting the signal from $1GHZ$ to the
-            frequency that $SA636$ can be demodulated. In this case, the
-            frequency is $100MHz$.
+            \textit{SA636}, the application circuits are very detailed. Thus the
+            demodulator from our design is \textit{SA636}. It is using both
+            $I/Q$ signal in the design. Therefore, in the design, a-$90$-degree
+            phase shift is needed. But this has also been designed by the
+            application circuit. So the only part the designer needs to worry
+            about is to downconverting the signal from $1GHZ$ to the frequency
+            that $SA636$ can be demodulated. In this case, the frequency is
+            $100MHz$.
             \begin{figure}[p]
                 \begin{center}
                     \includegraphics[width=4in]{../../img/pre_order/architecture.png}~
@@ -263,14 +263,70 @@ Thus, the entire receiver design flow follows the steps below:
         \end{center}
 
     \subsection{Demodulator}
+        
 \section{Other Components}
-\subsection{LNA Lumped Elements Selections}
-\subsection{Other Capacitors, Inductors, and Resistors}
-\subsection{SMA}
-\subsection{Test Points}
-\subsection{Audio Jack}
+    
+    \subsection{LNA Lumped Elements Selections} 
+        The LNA lumped elements are chosen according to the requirements on the
+        data sheet. The data sheet for ADL5521 gives a lot of detailed values
+        for the value of the impedance match and the BFL.  Here is the specs for
+        the ADL5521 at different frequency.
+
+        \begin{center}
+            \begin{tabular}{c c c c c}
+                Frequency & Noise Figure & Gain(dB) & P1dB(dBm) & OIP3(dBm) \\ \\ \hline \\
+                900MHz & 0.9 & 20.8 & 20.8 & 34.0\\
+                1950MHz & 1.0 & 15.8 & 21.0 & 35.0\\
+                2600MHz & 1.0 & 13.0 & 20.6 & 35.0\\
+                3500MHz & 1.1 & 10.5 & 20.3 & 36.0
+            \end{tabular}
+        \end{center}
+
+        \begin{center}
+            \textbf{Table} LNA Specs
+        \end{center}
+
+        \begin{figure}[p]
+            \begin{center}
+                \includegraphics[width=4in]{../../img/pre_order/ADL5521app.PNG}~
+                \label{ADL5521}
+                \caption{The application of ADL5521}
+            \end{center}
+        \end{figure}
+
+    \subsection{Other Capacitors, Inductors, and Resistors}
+        The selection of the lumped elements are based on the whether the
+        elements are easy for soldering. Thus we all choose the elements with
+        the package of 0603. If 0603 package is not available, we will chose the
+        0402 packages. For the input of LNA, we need to use the elements with
+        higher Q value, since the impedance match needs to have a low energy
+        loss due to the elements themselves.
+    \subsection{SMAs and Test Points}
+        The SMA connectors are for the input signal of the entire system and are
+        also used for the test points of each module. The test points are
+        inserted in the output of oscillators and the output of the amplifiers.
+        In this case, the debugging part is for the amplifiers' impedance match
+        and the oscillators tunning.
+    \subsection{Audio Jack}
+        The audio jack consists of three ends, sleeve, tip and ring. Sleeve is
+        for the left channel of the sound signal and tip is for the right
+        channel, while ring is the ground.
+
 \section{System Parameter Calculation}
+    System Gain Calculation
+    \begin{equation}
+        System Gain (Front end) = 20.1dB \times 3 + 10dB = 70.1dB
+    \end{equation}
+
+    System Noise Calculation
+    \begin{equation}
+        System Gain (Front end) = 0.9 +
+        \frac{10^(\frac{0.9}{10})-1}{10^\frac{20}{10}} + ... \cong 0.9dB
+    \end{equation}
+
 \section{Components List}
+    The components list is attached in the end of the report.
+
 \section{Summary}
 
 \end{document}
