@@ -43,7 +43,7 @@
         Estimated Gain & $152dB$ \\
         Estimated Noise Figure & $0.9$ \\
         Total Cost & $\$153 $ (Excluding SMA Connectors)   \\
-        Total Power Consumption & $100mW$
+        %Total Power Consumption & $100mW$
     \end{tabular}
 \end{center}
 
@@ -62,7 +62,7 @@ Thus, the entire receiver design flow follows the steps below:
         \item \textit{Estimation the specs of the entire design} \\
             The receiver front end will pick up the signal almost $2-3$ meters
             from the transmitter front end. Thus the signal is going to decade
-            almost $40-60$dB as the signal is transmitting through the air. The
+            almost $40-60dB$ as the signal is transmitting through the air. The
             following equation shows the estimation of receiver front-end signal
             signal power, as in the Equ.~\ref{power_est}.
             \begin{equation}
@@ -107,13 +107,15 @@ Thus, the entire receiver design flow follows the steps below:
                 \begin{tabular}{c c c c c}
                     Component Catogory & Name of the Components & Part Number &
                     Manufacture & Price \\ \\ \hline \\
-                    Low Noise Amplifier & ADL5521 & blabla & Analog Devices Inc.
-                    & \$3 \\
-                    Mixer & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
-                    Manufacturer & ADL5521 & blabla & Analog Devices Inc. & \$3
-                    \\
-                    Demodulator & ADL5521 & blabla & Analog Devices Inc. & \$3
-                    \\
+                    Low Noise Amplifier & ADL5521 & ADL5521ACPZ-R7CT-ND & Analog Devices Inc.
+                    & \$4.08 \\
+                    Mixer & UPC2757TB/58TB & UPC2757TB-E3-ACT-ND & CEL & \$2.87 \\
+                    Demodulator & SA636 & 568-4327-1-ND & NXP Semiconductors &
+                    \$5.54\\
+                    VCO\(120MHz\) & CVCO33CL-0110-0150 & 744-1056-ND & Crystek
+                    Corporation & \$23.10 \\
+                    VCO\(890MHz\) & CVCO55CL-0800-0980 & 744-1196-ND & Crystek
+                    Corporation & \$25.30 \\
                 \end{tabular}
             \end{center}
 
@@ -126,24 +128,6 @@ Thus, the entire receiver design flow follows the steps below:
             the layout more adjustable for the entire design. Thus the choice of
             the other components should based on both specs and the footprint
             designs. The brief list of the other components is below.
-
-            \begin{center}
-                \begin{tabular}{c c c c c}
-                    Component Catogory & Name of the Components & Part Number &
-                    Manufacture & Price \\ \\ \hline \\
-                    Components & ADL5521 & blabla & Analog Devices Inc.
-                    & \$3 \\
-                    Inductors & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
-                    Resistors & ADL5521 & blabla & Analog Devices Inc. & \$3
-                    \\
-                    SMA & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
-                    Audio Jack & ADL5521 & blabla & Analog Devices Inc. & \$3 \\
-                \end{tabular}
-            \end{center}
-
-            \begin{center}
-                \textbf{Table} Other Components List 
-            \end{center}
 
         \item \textit{Draw the Schematics and Layout} \\
             The schematic is in fig.~\ref{schematic}. And the layout is in
@@ -240,7 +224,7 @@ Thus, the entire receiver design flow follows the steps below:
             \begin{tabular}{c c c}
                 Spec & Value \\ \\ \hline \\
                 Frequency & $800MHz-1GHz$ \\
-                Phase Noise & $110dBi/Hz$ \\
+                Phase Noise & $110dBc/Hz$ \\
             \end{tabular}
         \end{center}
 
@@ -263,6 +247,82 @@ Thus, the entire receiver design flow follows the steps below:
         \end{center}
 
     \subsection{Demodulator}
+        \subsubsection{Principle}
+            In the RF systems, signal frequency of the antenna received is
+            usually high and narrow bandwidth. Under the current technology, we
+            always use the mixer to convertdown high frequency. And then flow
+            mid-frequency signal into filters, LNA and demodulator.\par
+            The mixer output is processed with a multistage IF amplifier, with
+            the 10.7 MHz IF passband shaping formed using ceramic filters. As
+            the characteristics are quiet fit our design, we choose SA636 as our
+            demodulator. The SA636 is a low-voltage high performance monolithic
+            FM IF system with high-speed RSSI incorporating a mixer/oscillator,
+            two limiting intermediate frequency amplifiers, quadrature detector,
+            logarithmic RSSI(Received Signal Strength Indicator), voltage
+            regulator, wideband data output and fast RSSI op amps. \par
+            The input stage is a Gilbert cell mixer with oscillator. Typical
+            mixer characteristics include a noise figure of 14 dB, conversion
+            gain of 11 dB. To achieve optimum linearity of the log signal
+            strength indicator, there must be a 6dBV insertion loss between the
+            first and second IF stages. The signal from the second limiting
+            amplifier goes to a Gilbert cell quadrature detector. One port of
+            the Gilbert cell is internally driven by the IF. The other output of
+            the IF is AC-coupled to a tuned quadrature network. This signal,
+            which now has a 90° phase relationship to the internal signal,
+            drives the other port of the multiplier cell. Overall, the IF
+            section has a gain of 90 dB for operation at intermediate frequency
+            at 10.7 MHz. \par
+        \subsubsection{Quadrature detector}
+            A quadrature demodulator for FM signals consists out of two parts: a
+            frequency dependent phase shift network and a phase detector. Two
+            signals are considered to be in phase quadrature when their phase
+            difference is exactly 90°.\par
+            A quadrature detector splits the signal, that is to be demodulated,
+            up into two signals. The first signal remains unchanged and is
+            applied to the input of a phase detector. The second signals is
+            passed through a capacitor. The capacitor will create a 90° phase
+            shift. The phase shifted signal is then applied to a frequency
+            dependent phase shifter, a LC tank circuit. If the LC tank circuits
+            center frequency equals the signals frequency, it imposes a further
+            phase shift of 0° on the signal.  Therefore the overall phase
+            difference will remain 90°.\par
+            If the signals frequency does vary from the LC circuits center
+            frequency, the LC tank will further shift the phase of the signal
+            from the capacitor, so that the signal’s total phase shift will be
+            the sum of the 90° shift, that’s imposed by the capacitor, and the
+            additional positive or negative phase change that is imposed by the
+            LC tank circuit. If the frequency increases, the phase shift of the
+            LC circuit decreases and vice versa. Therefore, the overall phase
+            difference decreases as the frequency increases and vice versa.\par
+
+            \begin{figure}[p]
+                \begin{center}
+                    \includegraphics[width=4in]{../../img/pre_order/demod.PNG}~
+                    \label{ADL5521}
+                    \caption{The Schematic of Demodulation}
+                \end{center}
+            \end{figure}
+
+        \subsubsection{SA636 Features}
+
+            \begin{figure}[p]
+                \begin{center}
+                    \includegraphics[width=4in]{../../img/pre_order/pin.PNG}~
+                    \label{Pins of the ADL5521}
+                    \caption{The Schematic of Pins for SA636}
+                \end{center}
+            \end{figure}
+
+            \begin{figure}[p]
+                \begin{center}
+                    \includegraphics[width=4in]{../../img/pre_order/testcircuit.PNG}~
+                    \label{Testcircuits}
+                    \caption{The Test Circuit for Demodulator SA636}
+                \end{center}
+            \end{figure}
+
+            Fig.~\ref{Testcircuits} shows the block diagram of SA636 and Figure
+            2 is the pinning information of that. 
         
 \section{Other Components}
     
