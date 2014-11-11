@@ -1,0 +1,62 @@
+\documentclass[]{article}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\parindent=0pt
+\usepackage[margin=0.5in]{geometry}
+
+\begin{document}
+\pagestyle{empty}
+{\large\textbf{EC782 Lab3 Quadrature VCO}}
+
+%\begin{multicols}{2}
+
+    \begin{itemize}
+        \item[*] Originally Created on Sept 11, 2014
+        \item[*] Modified on \today
+        \item[*] \textit {Boyou Zhou}\\
+                 8 St Mary's St, PHO 340, Boston, MA 02215\\
+                 Email: bobzhou@bu.edu, Phone: 617-678-8480
+                    
+    \end{itemize}
+
+%    \columnbreak
+%
+%    \begin{itemize}
+%        \item[ ]
+%        \item[ ]
+%        \item[*] \textit {Boyou Zhou}\\
+%                 8 St Mary's St, PHO 340, Boston, MA 02215\\
+%                 Email: bobzhou@bu.edu, Phone: 617-678-8480
+%    \end{itemize}
+
+%\end{multicols}
+
+\rule[-0.1cm]{7.5in}{0.01cm}\\
+\\
+\indent		             
+\section {Summary of Results}
+
+\begin{center}
+    \begin{tabular}{c c}
+        Parameter & values \\ \\ \hline \\
+        Resolution Bandwidth & 10kHz \\
+        Centre Frequency & 2GHz \\
+        Temperature & 290K \\
+        Noise Figure & 19.54dB
+
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    Table 1: Main Parameters 
+\end{center}
+
+\section{VCO Architecture}
+The entire design is consists of a quadrature VCO and two super gain amplifier.
+The super gain amplifier used a current mirror to copy the current to the output
+node. And there is a positive feedback loop in the amplifier to increase the
+input current node in the input of the current mirror.
+
+\end{document}
+
