@@ -1,0 +1,144 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+
+\documentclass{beamer}
+
+%
+% DO NOT USE THIS FILE AS A TEMPLATE FOR YOUR OWN TALKS¡!!
+%
+% Use a file in the directory solutions instead.
+% They are much better suited.
+%
+
+
+% Setup appearance:
+
+\usetheme{Darmstadt}
+%\usetheme{CambridgeUS}
+%\usetheme{Berkeley}
+%\usetheme{Hannover}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent=30}
+\setbeamertemplate{footline}{
+    
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+        \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+
+    \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+        \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+    \end{beamercolorbox}}%
+    \vskip0pt% 
+    
+    
+}
+
+% Standard packages
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{enumerate}
+
+
+
+% Setup TikZ
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+
+%specify the image path
+\graphicspath{{../../img/presentation/}}
+
+% Author, Title, etc.
+
+\title[ New Transceiver Architecture ] 
+{%
+A New Transceiver Architecture for the 60-GHz Band
+  %
+}
+
+\author[Boyou Zhou]
+{
+  Ali Parsa, Member IEEE\inst{1}\\
+  Behzad Razavi, Fellow IEEE\inst{1}\\
+  \textit{Reviewed by Boyou Zhou\inst{*}}
+}
+
+\institute[Tübingen and others]
+{
+  \inst{1}
+  University of California at Los Angeles, CA\\
+  \inst{*}
+  Boston Univeristy, MA
+}
+
+\date[fall 2014]
+{EC782, \today}
+
+
+
+% The main document
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\AtBeginSubsection{
+    \frame<beamer>{ 
+    \frametitle{Outline}   
+    \tableofcontents[currentsection,currentsubsection]
+    }
+}
+
+
+\section{Introduction}
+\subsection{Introduction to 60GHz Technology}
+
+\begin{frame}{What happens for tranceiver design}
+
+    \begin{figure}[p]
+        \includegraphics[width=4in]{preArchitecture.PNG}
+        \caption{Preiouse Architecture of Transciever}
+    \end{figure}
+
+    \begin{itemize}
+\pause
+        \item   
+
+\pause
+        \item  Correspond to higher frequency, the wavelength gets shorter.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Thanks}
+        \textbf{Any Questions?}
+\end{frame}
+
+\end{document}
+
+
