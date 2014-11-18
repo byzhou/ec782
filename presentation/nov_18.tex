@@ -114,25 +114,211 @@ A New Transceiver Architecture for the 60-GHz Band
     }
 }
 
-
 \section{Introduction}
-\subsection{Introduction to 60GHz Technology}
+\subsection{60GHz Communication Application}
+\begin{frame}{60GHz Commmunication Application}
+    \begin{itemize}
+        \item [*] 60GHz communication refres to frequencies between $57 GHz$ and
+        $66 GHz$.
+\pause
+        \item [*] FCC has allocated as licence-free operation. 
+\pause
+        \item [*] Energy propagation in the 60 GHz band has unique
+        characteristics and benefits.
+\pause
+        \item [*] More information can be transmitted and received.
+    \end{itemize}
+\end{frame}
 
-\begin{frame}{What happens for tranceiver design}
+\subsection{60GHz Technology Design Difficulties}
+\begin{frame}{Design Difficulties}
+    \begin{itemize}
+        \item \textit{Generic Challenges} The system design requires high
+        frequency operations and low-noise design.
+\pause
+        \item \textit{LO Design} This paper mainly focus on LO(\textit{Local
+        Oscillation}) design.
+\pause
+            \begin{itemize}
+                \item [-] \textbf{Generation} The system needs quadrature LO
+                generation.
+                \item [-] \textbf{Division} For local oscillation frequency, it
+                may requires frequency division.
+                \item [-] \textbf{Distribution} The local oscillation signal
+                needs to distributed for different mixers.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
 
+\section{Compararison of Architectures}
+\subsection{Traditional Architectures}
+\begin{frame}{Design of High Frequency System Local Oscillators}
+    \begin{block}{High Q Issues}
+        The generation of quadrature signal is a very difficult task for system
+        working at $60GHz$, since the Q values for inductors and varactors begin
+        to saturate at high frequencies.
+    \end{block}
+
+\pause
+    \begin{block}{Frequency Doubler Issues}
+        Applying a frequency doubler in the system may leads to some other
+        problems.
+    \end{block}
+
+\end{frame}
+
+\subsection{Problems with Traditional Architectures}
+
+\begin{frame}{Designs of the Transceivers}
     \begin{figure}[p]
         \includegraphics[width=4in]{preArchitecture.PNG}
-        \caption{Preiouse Architecture of Transciever}
+        \caption{Traditional Architecture of Transceiver}
     \end{figure}
-
     \begin{itemize}
 \pause
-        \item   
-
+        \item The first figure shows a dummy version of how the basic
+        architecture works. It requires high Q for the lumped components.
 \pause
-        \item  Correspond to higher frequency, the wavelength gets shorter.
+        \item The second figure has these following drawbacks.
     \end{itemize}
+\end{frame}
 
+\begin{frame}{The Third Kind of Design}
+    \begin{itemize}
+\pause
+        \item Frequency Doubler Issues
+            \begin{itemize}
+                \item [*] CMOS doublers tend to be quite lossy at these
+                frequencies, raising noise floor, necessitiating
+                post-amplification to achieve sufficient swings.
+                \item [*] Typical design does not provide quadrature outputs
+                \item [*] Since it requires additional inductors, the
+                distribution can be very hard.
+            \end{itemize}
+\pause
+        \item The third kind of design illustrates a general way of having the
+        first stage $Nf_{osc}$ and the second stage $f_{osc}/M$ downconverting.
+        Thus the input signal and local oscillation signal frequencies should
+        satisfy the equ.~\ref{osc&in}.
+        \begin{equation}
+            \frac{f_{osc}}{M} = f_{in} - Nf_{osc}
+            \label{osc&in}
+        \end{equation}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+        Equ.~\ref{oscVSin} also shows that theis architecture should deal with 
+        \begin{equation}
+            f_{osc} = f_{in} \times \frac{M}{MN+1}
+            \label{oscVSin}
+        \end{equation}
+\pause
+        \begin{itemize}
+            \item [-] \textbf{Loss of the Frequency Multiplier}
+\pause
+            \item [-] \textbf{Problem of Image Rejection}
+        \end{itemize}
+\end{frame}
+
+\section{Receiver Design}
+\subsection{I/Q Gain Mismatch}
+\begin{frame}{Designs of the Transceivers}
+    \begin{figure}[p]
+        \includegraphics[width=4in]{halfrftrans.png}
+        \caption{This Paper's Design}
+    \end{figure}
+
+    $Re{x_{BB}(t)e^{+j\omega_{RF}t}}$ has been modulated by $cos \omega_{LO}t +
+    \alpha cos 3\omega_{LO}t$ caused by LO's third harmonics modulation.
+    \begin{equation}
+        x_{IF}(t) = Re\{x_{BB}(t)e^{+j\omega_{IF}t}\} + Re\{\alpha
+        x_{BB}^*(t)e^{+j\omega_{IF}t}\}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{I/Q Gain Mismatch}
+    Thus the signal will have an I/Q gain mismatch. 
+        \begin{equation}
+            \begin{split}
+            x_{BB,I}(t) & = Re\{x_{BB}(t) + \alpha x_{BB}^*(t)\} \\
+                        & = ( 1 + \alpha ) Re\{x_{BB}(t)\}
+            \end{split}
+        \end{equation}
+
+        \begin{equation}
+            \begin{split}
+            x_{BB,Q}(t) & = Im\{x_{BB}(t) + \alpha x_{BB}^*(t)\} \\
+                        & = ( 1 - \alpha ) Im\{x_{BB}(t)\}
+            \end{split}
+        \end{equation}
+\end{frame}
+
+\begin{frame}{The Third Harmonics from LO}
+    \begin{figure}[p]
+        \includegraphics[width=2in]{16QAM.png}
+        \caption{Impacts of I/Q gain mismatch on 16QAM}
+    \end{figure}
+\end{frame}
+
+\subsection{Cancelling I/Q Gain Mismatch}
+\begin{frame}{Designs of the Receivers}
+    \begin{figure}[p]
+        \includegraphics[width=2in]{halfrfReceiver.png}~
+        \includegraphics[width=2in]{halfrfreceiverspectrum.png}
+        \caption{Receiver Design}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Designs of the Receivers}
+    \begin{figure}[p]
+        \includegraphics[width=1in]{LNA.png}~
+        \includegraphics[width=3in]{polyphasefilter.png}
+        \caption{Receiver Design}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Designs of the Receivers}
+    \begin{figure}[p]
+        \includegraphics[width=4in]{receiverreal.png}
+        \caption{Receiver Design}
+    \end{figure}
+\end{frame}
+
+
+\section{Transmitter Design}
+\subsection{Transmitter Design}
+\begin{frame}{Designs of the Transmiiter}
+    \begin{figure}[p]
+        \includegraphics[width=2in]{transmitter.png}~
+        \includegraphics[width=2in]{transmitterspectrum.png}
+        \caption{Transmitter Design}
+    \end{figure}
+\end{frame}
+
+\section{Validation}
+\subsection{Validataion of the Design}
+\begin{frame}{Validation of the Design}
+    \begin{figure}[p]
+        \includegraphics[width=4in]{layout.png}
+        \caption{Layout}
+    \end{figure}
+\end{frame}
+
+\section{Specs}
+\subsection{Results}
+\begin{frame}{Gain and Noise Figure of Receiver}
+    \begin{figure}[p]
+        \includegraphics[width=4in]{recgainandnf.png}
+        \caption{Gain and Noise Figure of Receiver}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Gain and Noise Figure of Transmitter}
+    \begin{figure}[p]
+        \includegraphics[width=4in]{transgainandnf.png}
+        \caption{Gain and Noise Figure of Transmitter}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Thanks}
