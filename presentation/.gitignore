@@ -1,6 +1,10 @@
 *.pdf
 *.log
 *.aux
+*.snm
+*.nav
+*.out
+*.toc
 .*.swp
 !.gitignore
 .nfs*
