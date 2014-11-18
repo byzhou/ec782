@@ -1,9 +1,4 @@
-compiler = pdflatex
-
-default:all
-all:
-	$(compiler) lab3.tex
-evince:
-	evince lab3.pdf &
+default:
+	pdflatex pre_order.tex
 clean:
-	rm -rf *.aux *.log
+	rm -rf *.aux *.log *.out
