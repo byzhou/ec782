@@ -389,32 +389,45 @@ Thus, the entire receiver design flow follows the steps below:
     The components list is attached in the end of the report.
 
 \section{Post-Test Results}
+\subsection{LNA}
     \begin{figure}[t!]
         \begin{center}
             \vspace{-0.3in}
             \includegraphics[width=6in]{../../img/pre_order/lna1.jpg}
-            \label{fig:lna1}
             \caption{LNA Test Connection}
+            \label{fig:lna1}
         \end{center}
     \end{figure}
-
-    In Figure~\ref{fig:lna1}
 
     \begin{figure}[b!]
         \begin{center}
             \vspace{-0in}
             \includegraphics[width=6in]{../../img/pre_order/lna2.jpg}
-            \label{fig:lna2}
             \caption{LNA Test Results}
+            \label{fig:lna2}
         \end{center}
     \end{figure}
 
+    Figure~\ref{fig:lna1} shows how we test the cascading LNAs. The signal that
+    goes into the input of the system, which is the antenna input. The input
+    power is $0dbm$. The output of the cascading LNAs is in Figure~\ref{fig:lna2}.
+    The output signal magnitude is $-35.94dbm$. Thus the total cascading LNAs
+    do not provide any gain, while it has a lot of loss. In the demo of our
+    system, we also shows that if the input signal is $16dbm$, the output of
+    the LNAs is $-9dbM$. Considering that the cables may have $5dB$ loss,
+    and the entire system will have about $20dB$ loss.
+
+    Since we turn of the supply signal, there is no output signal at all. Thus I
+    think the LNAs are still working, but the matching networks do not matched
+    exactly to $50\Omega$. Thus there is a loss around $20dB$ to $30dB$ loss.
+
+\subsection{Mixer}
     \begin{figure}[t!]
         \begin{center}
             \vspace{-0.3in}
             \includegraphics[width=6in]{../../img/pre_order/mixer1.jpg}
-            \label{fig:mixer1}
             \caption{Mixer Test Connection}
+            \label{fig:mixer1}
         \end{center}
     \end{figure}
 
@@ -422,17 +435,30 @@ Thus, the entire receiver design flow follows the steps below:
         \begin{center}
             \vspace{-0in}
             \includegraphics[width=6in]{../../img/pre_order/mixer2.jpg}
-            \label{fig:mixer2}
             \caption{Mixer Test Results}
+            \label{fig:mixer2}
         \end{center}
     \end{figure}
 
+    Figure~\ref{fig:mixer1} shows how we test our Mixer. We use a splitter to
+    split the signal from the function generator. The splitter generates two
+    $1GHz$ signals as the modulator's local oscillator and radio frequency
+    signal for the testing purpose. As we can see from Figure~\ref{fig:mixer2},
+    the results show that there is no output at $2GHz$. Thus there should be a
+    problem with the \textit{mixer}.
+
+    The possible problem can be soldering problem due to the size of the mixer
+    is too small. We check the \textit{VCC} and \textit{GND}, and they are
+    connected correctly. The only problem can be the false connection between
+    the signal pins.
+
+\subsection{VCO}
     \begin{figure}[t!]
         \begin{center}
             \vspace{-0.3in}
             \includegraphics[width=6in]{../../img/pre_order/900vco1.jpg}
-            \label{fig:mixer2}
             \caption{$900MHz$ VCO Test Connection}
+            \label{fig:900vco1}
         \end{center}
     \end{figure}
 
@@ -440,8 +466,8 @@ Thus, the entire receiver design flow follows the steps below:
         \begin{center}
             \vspace{-0in}
             \includegraphics[width=6in]{../../img/pre_order/900vco2.jpg}
-            \label{fig:mixer2}
             \caption{$120MHz$ VCO Test Connection}
+            \label{fig:120vco1}
         \end{center}
     \end{figure}
 
@@ -450,7 +476,7 @@ Thus, the entire receiver design flow follows the steps below:
             \vspace{-0.3in}
             \includegraphics[width=6in]{../../img/pre_order/120vco1.jpg}
             \caption{$120MHz$ VCO Test Results}
-            \label{fig:mixer2}
+            \label{fig:120vco2}
         \end{center}
     \end{figure}
 
@@ -458,10 +484,17 @@ Thus, the entire receiver design flow follows the steps below:
         \begin{center}
             \vspace{-0in}
             \includegraphics[width=6in]{../../img/pre_order/120vco2.jpg}
-            \label{fig:mixer2}
             \caption{$900MHz$ VCO Test Results}
+            \label{fig:900vco2}
         \end{center}
     \end{figure}
+
+    In Figure~\ref{fig:900vco1} and Figure~\ref{fig:120vco1}, we show how we
+    connecting the testing for VCO. The VCO results are in
+    Figure~\ref{fig:900vco2} and Figure~\ref{fig:120vco2}.
+    Figure~\ref{fig:900vco2} shows that the $900MHz$ VCO is not working and
+    Figure~\ref{fig:120vco2} shows that the $120MHz$ VCO has a lot more
+    harmonics than it should have.
 
 \section{Summary}
     The entire design with the PCB layout design mainly targets at module specs
@@ -469,6 +502,14 @@ Thus, the entire receiver design flow follows the steps below:
     components and modification between different modules. The most critical
     part of the design is to have a good link budget estimation and the
     arrangement in the layout design. 
+
+    However, during the testing process, most of the modules do not work well.
+    Part of the problem can the parts do not work well. For the LNAs, we did not
+    use the third stage. Instead, we used a wire directly bypassing the third
+    stage, which may introduce a lot of inductance at the output. This
+    eventually leads to the loss to the whole system. For some other problems,
+    they may be due to the soldering problem. I think if we have another chance,
+    we can try it for the other time.
 
 \end{document}
 
